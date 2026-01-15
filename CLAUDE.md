@@ -56,6 +56,14 @@ test('example', async ({ pageFactory }) => {
 });
 ```
 
+**Locator Priority:**
+1. `data-testid` or `data-automation` attributes
+2. Element ID
+3. Accessibility role + name combination
+4. Label associations for form fields
+5. CSS selectors
+6. XPath (last resort)
+
 **Custom Fixtures**: `src/tests/fixtures.ts` extends Playwright's `test` with reusable fixtures:
 - `homePage` - Pre-initialized HomePage instance
 - `pageFactory` - For creating page objects on demand

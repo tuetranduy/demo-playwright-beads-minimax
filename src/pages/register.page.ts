@@ -9,6 +9,7 @@ export interface RegisterData {
 }
 
 export class RegisterPage extends BasePage {
+  private readonly signUpForm: Locator;
   private readonly emailInput: Locator;
   private readonly passwordInput: Locator;
   private readonly confirmPasswordInput: Locator;
@@ -19,11 +20,12 @@ export class RegisterPage extends BasePage {
   constructor(page: Page) {
     super(page);
 
-    this.emailInput = page.getByRole('textbox', { name: /Email \(6 - 32 characters\):/ });
-    this.passwordInput = page.getByRole('textbox', { name: /Password \(8 - 64 characters\):/ });
-    this.confirmPasswordInput = page.getByRole('textbox', { name: 'Confirm Password:' });
-    this.pidInput = page.getByRole('textbox', { name: /PID\/Passport number \(8 - 20 characters\):/ });
-    this.registerButton = page.getByRole('button', { name: 'Register' });
+    this.signUpForm = page.getByRole('group', { name: 'Sign-up Form' });
+    this.emailInput = this.signUpForm.locator('#email');
+    this.passwordInput = this.signUpForm.locator('#password');
+    this.confirmPasswordInput = this.signUpForm.locator('#confirmPassword');
+    this.pidInput = this.signUpForm.locator('#pid');
+    this.registerButton = this.signUpForm.getByRole('button', { name: 'Register' });
     this.pageTitle = page.getByRole('heading', { name: 'Create account' });
   }
 
